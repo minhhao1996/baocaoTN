@@ -17,9 +17,11 @@
     <link href="<?php echo public_url()?>css/menu-tab.css" rel="stylesheet">
     <link href="<?php echo public_url()?>css/jquery.bxslider.css" rel="stylesheet" />
     <link href="<?php echo public_url()?>css/style.css" rel="stylesheet">
-    <link href="<?php echo public_url()?>css/slider.css" rel="stylesheet">
 
-    <script src="<?php echo public_url()?>js/jquery-2.2.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script
+
+    <script src="<?php echo public_url('site')?>js/jquery-2.2.3.min.js"></script>
     <script src="<?php echo public_url()?>js/bootstrap.js"></script>
     <script src="<?php echo public_url()?>js/app.min.js"></script>
     <script src="<?php echo public_url()?>js/owl.carousel.js"></script>
@@ -27,7 +29,7 @@
     <script src="<?php echo public_url()?>js/jquery.bxslider.js"></script>
     <script src="<?php echo public_url()?>js/jcarousel.connected-carousels.js"></script>
     <script src="<?php echo public_url()?>js/menu-tab.js"></script>
-    <script src="<?php echo public_url()?>js/slider.js"></script>
+
 
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -35,4 +37,20 @@
             js = d.createElement(s); js.id = id;
             js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>
+        function onAddCart(id){
+            var strurl="<?php echo base_url();?>"+'/cart/add';
+            jQuery.ajax({
+                url: strurl,
+                type: 'POST',
+                dataType: 'json',
+                data: {id: id},
+                success: function(data) {
+                    document.location.reload(true);
+                    alert('Thêm sản phẩm vào giỏ hàng thành công !');
+                }
+            });
+        }
+    </script>

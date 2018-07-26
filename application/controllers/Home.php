@@ -25,13 +25,32 @@ class Home extends MY_controller{
         $product_buy = $this->product_model->get_list($input);
         $this->data['product_buy']  = $product_buy;
 
+
+
         // lấy danh sách sản phẩm thuộc thư mục cha
-            $this->load->model('product_model');
-         $input['order'] = array('id' => 1);
-         $product_tivi = $this->product_model->get_list($input);
+        $i =0;
+        $dk['where']= array('parent_id'=>$i);
+        $catalog_sdt = $this->catalog_model->get_list($dk);
+
+        $catalog_subs_id = array();
+        foreach ($catalog_sdt as $row)
+        {
+            $catalog_subs_id[] = $row->id;
+        }
+        //lay tat ca san pham thuoc cac danh mục con do
+        $this->db->where_in('catalog_id', $catalog_subs_id);
+
+        $product_sdt = $this->product_model->get_list($catalog_subs_id);
+        $this->data['product_sdt']  = $product_sdt;
 
 
-        $product_buy = $this->product_model->get_list($input);
+
+
+
+
+
+
+
 
 
         //lay nội dung của biến message

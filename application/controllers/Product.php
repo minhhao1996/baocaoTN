@@ -32,6 +32,7 @@ Class Product extends MY_Controller
             $input_catalog = array();
             $input_catalog['where']  = array('parent_id' => $id);
             $catalog_subs = $this->catalog_model->get_list($input_catalog);
+
             if(!empty($catalog_subs)) //neu danh muc hien tai co danh muc con
             {
                 $catalog_subs_id = array();
@@ -39,16 +40,26 @@ Class Product extends MY_Controller
                 {
                     $catalog_subs_id[] = $sub->id;
                 }
+
                 //lay tat ca san pham thuoc cac danh mục con do
                 $this->db->where_in('catalog_id', $catalog_subs_id);
+
+
+
             }else{
                 $input['where'] = array('catalog_id' => $id);
+
+
             }
-        }else{
+        }
+        else{
             $input['where'] = array('catalog_id' => $id);
+
         }
 
         //lấy ra danh sách sản phẩm thuộc danh mục đó
+
+
         //lay tong so luong ta ca cac san pham trong websit
         $total_rows = $this->product_model->get_total($input);
         $this->data['total_rows'] = $total_rows;
@@ -122,14 +133,14 @@ Class Product extends MY_Controller
             //lay du lieu tu autocomplete
             $key =  $this->input->get('term');
         }else{
-            $key =  $this->input->get('key-search');
+            $key =  $this->input->get('search');
         }
-
         $this->data['key'] = trim($key);
         $input = array();
         $input['like'] = array('name', $key);
         $list = $this->product_model->get_list($input);
         $this->data['list']  = $list;
+
 
         if($this->uri->rsegment('3') == 1)
         {
@@ -153,26 +164,21 @@ Class Product extends MY_Controller
         }
     }
 
-    /*
-     * Tim kiem theo gia san pham
-     */
-    function search_price()
-    {
-        $price_from = intval($this->input->get('price_from'));
-        $price_to   = intval($this->input->get('price_to'));
-        $this->data['price_from'] = $price_from;
-        $this->data['price_to'] = $price_to;
-
-        //loc theo gia
-        $input  = array();
-        $input['where'] = array('price >= ' => $price_from, 'price <=' => $price_to);
-        $list = $this->product_model->get_list($input);
-        $this->data['list'] = $list;
-
-        //load view
-        $this->data['temp'] = 'site/product/search_price';
+    function product_all(){
+        $input= array();
+        $product = $this->product_model->get_list($input);
+        $this->data['product'] = $product;
+        $this->data['temp'] = 'site/product/product_all';
         $this->load->view('site/layout', $this->data);
+
+
+        // lấy danh sách sản phẩm mua nhiều
+        $input['order'] = array('buyed', 'DESC');
+        $product_buy = $this->product_model->get_list($input);
+        $this->data['product_buy']  = $product_buy;
     }
+
+
 }
 
 

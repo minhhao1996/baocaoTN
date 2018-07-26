@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <div class="titleArea">
     <div class="wrapper">
         <div class="pageTitle">
@@ -111,8 +112,12 @@
                 </table>
             </div>
         </div>
+    </div>
 
-        <div class="clear"></div>
+
+
+            <!-- /.row -->
+        </section>
 
         <!-- Giao dich thanh cong gan day nhat -->
 

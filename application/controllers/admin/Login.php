@@ -16,7 +16,8 @@
                     $this->session->set_userdata('login',true);
                     // lay name admin dang nhap luu vao session
                     $admin =$this->_get_admin_info();
-                    $this->session->set_userdata('admin_name',$admin->id);
+                    // gắn seesion id
+                    $this->session->set_userdata('admin_id_login',$admin->id);
                     redirect(admin_url('home'));
                 }
             }
@@ -24,13 +25,8 @@
         }
         // kiêm tra user name vs password
         function check_login(){
-            $username =$this->input->post('username');
-            $pass = $this->input->post('password');
-            $pass = md5($pass);
-
-            $this->load->model('admin_model');
-            $where = array('username'=>$username, 'password'=>$pass);
-            if($this->admin_model->check_exists($where)){
+            $admin =$this->_get_admin_info();
+            if($admin){
 
                 return true;
 
@@ -41,7 +37,7 @@
         private function _get_admin_info(){
             $username =$this->input->post('username');
             $pass = $this->input->post('password');
-
+            $pass = md5($pass);
             $this->load->model('admin_model');
             $where = array('username'=>$username, 'password'=>$pass);
             $admin =$this->admin_model->get_info_rule($where);

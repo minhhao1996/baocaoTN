@@ -11,7 +11,7 @@
         <?php  $this->load->view('site/header')?>
     </div>
     <div id="container">
-
+        <?php $this->load->view('admin/message') ?>
         <div class="content">
             <?php $this->load->view($temp) ?>
         </div>

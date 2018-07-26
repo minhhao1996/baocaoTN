@@ -46,12 +46,11 @@ Class Admin extends MY_controller {
             $this->form_validation->set_rules('name','Name','required|min_length[6]');
             $this->form_validation->set_rules('username','User Name','required|callback_check_username');
               $this->form_validation->set_rules('password','Password', 'required|min_length[1]');
-             $this->form_validation->set_rules('re_password','Request password','matches[password]');
+             $this->form_validation->set_rules('re_password','Request password','required|matches[password]');
             if($this->form_validation->run()){
                 $name = $this->input->post('name');
                 $username = $this->input->post('username');
                 $password = $this->input->post('password');
-
                 $data = array('name'=>$name,
                     'username'=>$username,
                     'password'=>md5($password));
@@ -120,7 +119,6 @@ Class Admin extends MY_controller {
         $this->load->view('admin/main',$this->data);
     }
 
-
     function del(){
         $id = $this->uri->rsegment('3');
         $id=intval($id); // ép kiểu dữ liệu
@@ -134,10 +132,7 @@ Class Admin extends MY_controller {
 
         $this->session->set_flashdata('message','Xóa quản trị viên thành công');
         redirect(admin_url('admin'));
-
     }
-
-
 
     // đăng xuất
     function  logout(){

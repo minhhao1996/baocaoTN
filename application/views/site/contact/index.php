@@ -1,46 +1,44 @@
-<form action="http://[::1]/baocaoshop/lien-he" method="post" accept-charset="utf-8">
+
     <section>
         <div class="container">
-
+            <div id="register">
             <div class="col-md-7 ">
-                <div class="section-article contactpage" style="
-                   ">
+                <div class="section-article contactpage" style="">
 
                     <input name="FormType" type="hidden" value="contact">
                     <input name="utf8" type="hidden" value="true">
                     <h1 style="color: black">Liên hệ với chúng tôi</h1>
+                    <form action=" <?php echo site_url('contact/index')?>" method="post" enctype="multipart/form-data">
+                        <div class="col_full">
+                            <label for="first_name">Họ tên:<span class="require_symbol">*</span></label>
+                            <input type="text" id="first_name" name="name" placeholder="Họ tên của bạn" class="form-control">
+                            <div class="error" id="name_error"><?php echo form_error("name")?></div>
+                        </div>
+                        <div class="col_full">
+                            <label for="register-form-email">Email:<span class="require_symbol">*</span></label>
+                            <input type="text" id="register-form-email" name="email" value="<?php echo set_value('email')?>" class="form-control" placeholder="Nhập email">
+                            <div class="error" id="email_error"><?php echo form_error("email")?></div>
+                        </div>
+                        <div class="col_full">
+                            <label for="first_name">Số điện thoại:<span class="require_symbol">*</span></label>
+                            <input type="text" id="first_name" name="phone" placeholder="Số điện thoại" class="form-control" value="">
+                            <div class="error" id="name_error"><?php echo form_error("phone")?></div>
+                        </div>
+                        <div class="col_full">
+                            <label for="first_title">tiêu đề:<span class="require_symbol">*</span></label>
+                            <input type="text" id="first_name" name="title" value="<?php echo set_value('title')?>" class="form-control" placeholder="Tên tiêu đề">
+                            <div class="error" id="title_error"><?php echo form_error("title")?></div>
+                        </div>
+                        <div class="col_full">
+                            <label for="first_title">Nội dung:<span class="require_symbol">*</span></label>
+                            <textarea class="form-control" rows="5" name="content"></textarea>
+                            <div class="error" id="content_error"><?php echo form_error("content")?></div>
+                        </div>
+                        <div class="col_full nobottommargin">
+                            <button class="button button-3d button-black nomargin" id="register-form-submit"  type="submit" style="margin-bottom: 20px">Gửi Yêu Cầu</button>
+                        </div>
+                    </form>
 
-                    <div class="form-comment">
-                        <div class="form-group">
-                            <label for="name"><em> Họ tên</em><span class="required">*</span></label>
-                            <input id="name" name="fullname" type="text" value="" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="email"><em> Email</em><span class="required">*</span></label>
-                            <input id="email" name="email" class="form-control" type="email" value="">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone"><em> Số điện thoại</em><span class="required">*</span></label>
-                            <input type="number" id="phone" class="form-control" name="phone">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="message"><em> Tiêu đề</em><span class="required">*</span></label>
-                            <textarea id="message" name="title" class="form-control custom-control" rows="2"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="message"><em> Lời nhắn</em><span class="required">*</span></label>
-                            <textarea id="message" name="content" class="form-control custom-control"
-                                      rows="6"></textarea>
-                        </div>
-                        <div class="col-md-3" style="background: #0d6aad;">
-                            <button type="submit" class="btn-update-order">
-                            Gửi nhận xét
-                            </button>
-                        </div>
-
-
-                    </div>
 
                 </div>
             </div>
@@ -54,5 +52,3 @@
         </div>
 
     </section>
-
-</form>

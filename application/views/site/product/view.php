@@ -85,11 +85,11 @@
                         <div class="actions-qty">
                             <label for="qty">Số lượng</label>
                             <input type="number" class="input-text qtyDetail" title="Qty" value="1" min="1"
-                                   maxlength="12" id="qtyDetail" name="quantity">
+                                   maxlength="10" id="qtyDetail" name="quantity">
                             <div class="actions-qty__button">
-                                <a class="button btn-cart add_to_cart_detail detail-button" title="Mua ngay"
-                                   aria-label="Mua ngay" href="<?php echo base_url('cart/add/'.$product->id)?>"><span><i class="fa fa-shopping-cart"
-                                                                  aria-hidden="true"></i> Mua ngay</span></a>
+                                <button class="button btn-cart add_to_cart_detail detail-button" title="Mua ngay"
+                                        aria-label="Mua ngay" onclick="onAddCart(<?php echo $product->id ?>)"><span><i class="fa fa-shopping-cart"
+                                                                       aria-hidden="true"></i> Mua ngay</span></button>
                                 <buttion class="hotline detail-hotline" aria-label="Hotline" title="Holine: 01666403210"
                                          onclick="window.location.href='tel:01666403210'"><i
                                             class="fa fa-volume-control-phone" aria-hidden="true"></i>01666403210

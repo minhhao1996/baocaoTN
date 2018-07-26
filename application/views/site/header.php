@@ -1,4 +1,16 @@
 
+
+<script src="<?php echo public_url()?>js/autocomplete.js"></script>
+
+<link href="<?php echo public_url()?>css/smoothness/autocomplete.min.css" rel="stylesheet">
+<script type="text/javascript">
+    $(function() {
+        $( "#text-search" ).autocomplete({
+            source: "<?php echo site_url('product/search/1')?>",
+        });
+
+    });
+</script>
 <section id="header">
     <nav class="navbar navbar-inverse" style="z-index: 9999">
         <div class="container">
@@ -11,9 +23,9 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="icon-cart-mobile hidden-md hidden-lg">
-                        <a href="#">
+                        <a href="<?php echo base_url('cart ')?>">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span>0</span>
+                            <span><?php echo $total_items?></span>
                         </a>
                     </div>
                     <!-- <div class="site-container">
@@ -23,37 +35,28 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar navbar-nav" id="nav1">
                         <li><a href="<?php echo base_url('product/catalog/')?>">Trang chủ</a></li>
-                        <li><a href="san-pham/1">Sản phẩm</a></li>
+                        <li><a href="<?php echo site_url('product/product_all')?>">Sản phẩm</a></li>
                         <li><a href="tin-tuc/1">Tin tức</a></li>
                         <li><a href="gioi-thieu">Giới thiệu</a></li>
                         <li><a href="<?php echo base_url('contact/index/')?>">Liên hệ</a></li>
                         <?php if(isset($user_info)):?>
-                        <li><a href="dang-ky">Xin Chào :</a></li>
-                        <li><a href="dang-nhap">Thoát</a></li>
+                        <li><a href="<?php echo site_url('user')?>">Xin Chào :<?php echo  $user_info->name?></a></li>
+                        <li><a href="<?php echo site_url('user/logout')?>">Thoát</a></li>
                         <?php else:?>
-                            <li><a href="dang-ky">Đăng ký</a></li>
-                            <li><a href="dang-nhap">Đăng nhập</a></li>
+                            <li><a href="<?php  echo site_url('user/register')?>">Đăng ký</a></li>
+                            <li><a href="<?php  echo site_url('user/login')?>">Đăng nhập</a></li>
                         <?php endif;?>
                     </ul>
                     <ul class="nav navbar navbar-nav pull-right" id="nav2">
                         <?php if(isset($user_info)):?>
-                            <li><a href="dang-ky">Xin Chào :</a></li>
-                            <li><a href="dang-nhap">Thoát</a></li>
+                            <li><a href="<?php echo site_url('user')?>">Xin Chào: <?php echo  $user_info->name?></a></li>
+                            <li><a href="<?php echo site_url('user/logout')?>">Thoát</a></li>
                         <?php else:?>
-                            <li><a href="dang-ky">Đăng ký</a></li>
-                            <li><a href="dang-nhap">Đăng nhập</a></li>
+                            <li><a href="<?php  echo site_url('user/register')?>">Đăng ký</a></li>
+                            <li><a href="<?php echo site_url('user/login')?>">Đăng nhập</a></li>
                         <?php endif;?>
                     </ul>
                 </div>
-                <!--  <div class="site-pusher">
-                    <nav class="menu">
-                        <a href="#" class="text-center">Trang chủ</a>
-                        <a href="san-pham/1" class="text-center">Sản phẩm</a>
-                        <a href="tin-tuc/1" class="text-center">Tin tức</a>
-                        <a href="#" class="text-center">Giới thiệu</a>
-                        <a href="#" class="text-center">Liên hệ</a>
-                    </nav>
-                </div> -->
             </div>
         </div>
     </nav>
@@ -65,24 +68,22 @@
                                                     alt="Green Construction"></a>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 search">
-            <form action="search" method="get" role="form">
+            <form action="<?php echo site_url('product/search')?>" method="get" role="form">
                 <div class="input-search">
-                    <input type="text" class="form-control" name="search" placeholder="Nhập từ khóa để tìm kiếm...">
-                    <button>
+                    <input type="text" aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" class="form-control" name="search" placeholder="Nhập từ khóa để tìm kiếm..." value="<?php echo isset($key) ? $key : ''?>" id="text-search">
+                   <button type="submit">
                         <i class="fa fa-search"></i>
                     </button>
-                    <!-- <form action="search" method= "get">
-                                                <input type="text" placeholder="Tìm kiếm..." name="search" id='autocomplete' required>
-                                                <button type="submit"><i class="fa fa-search"></i></button>
-                                            </form> -->
                 </div>
             </form>
         </div>
+
         <div class="col-md-2 cart hidden-xs hidden-sm">
-            <a href="gio-hang">
+            <a href="<?php echo base_url('cart ')?>">
                 <img src="http://[::1]/baocaoshop/public/images/cart.png" alt="Cart">
                 <span>
-				2			</span>
+                    <?php echo $total_items?>
+                </span>
             </a>
         </div>
     </div>
@@ -135,7 +136,7 @@
             <div class="col-md-9 col-lg-9 panel-right">
                 <ul class="menu-right pull-right">
                     <li class="pull-left"><a href="<?php echo base_url('product/catalog/')?>">Trang chủ</a></li>
-                    <li class="pull-left"><a href="san-pham">Sản phẩm</a></li>
+                    <li class="pull-left"><a href="<?php echo site_url('product/product_all/')?>"">Sản phẩm</a></li>
                     <li class="pull-left"><a href="tin-tuc/1">Tin tức</a></li>
                     <li class="pull-left"><a href="gioi-thieu">Giới thiệu</a></li>
                     <li class="pull-left"><a href="<?php echo base_url('contact/index/')?>">Liên hệ</a></li>
